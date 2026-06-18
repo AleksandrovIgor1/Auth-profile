@@ -1,0 +1,15 @@
+.container {
+  background-color: #f8f8f8;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 16px 20px;
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}

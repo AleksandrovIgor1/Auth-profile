@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  background-color: #fff;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.logos {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.list {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  padding: 10px 12px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #474747;
+}
+
+.item svg:last-child {
+  margin-left: auto;
+}
+
+.itemActive {
+  position: relative;
+  color: #6a0bff;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+}
+
+.itemActive::after {
+  content: "";
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -8px;
+
+  height: 0.5px;
+  background: #d1d1d1;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  gap: 8px;
+  padding: 20px;
+}
+
+.supportButton {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 12px 59px;
+  font-weight: 600;
+  background-color: #6a0bff;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+}

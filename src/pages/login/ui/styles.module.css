@@ -1,0 +1,14 @@
+.page {
+  display: flex;
+  height: 100vh;
+}
+
+.content {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+  }
+}

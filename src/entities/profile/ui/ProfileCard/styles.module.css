@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 10px 0 #6a63761a;
+  border-radius: 24px;
+  background-color: #fff;
+}
+
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.format {
+  color: #474747;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.headerInfo {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.name {
+  font-size: 24px;
+  color: #303030;
+}
+
+.candidate {
+  color: #008616;
+  background-color: #edf7ef;
+  border-radius: 30px;
+  padding: 3px 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.experience {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.location {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.socialMedias {
+  display: flex;
+  gap: 4px;
+}

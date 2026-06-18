@@ -1,0 +1,10 @@
+.page {
+  display: flex;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .page {
+    flex-direction: column;
+  }
+}

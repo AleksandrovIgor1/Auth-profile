@@ -1,0 +1,52 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input {
+  padding: 14px 48px 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  outline-color: #a66dff;
+  background-color: transparent;
+  width: 100%;
+}
+
+.eyeIcon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.eyeIconError {
+  color: #d50b3e;
+}
+
+.inputError {
+  border-color: #d50b3e;
+  outline-color: #d50b3e;
+}
+
+.error {
+  color: #d50b3e;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+input::placeholder {
+  color: #bbbbc8;
+  font-weight: 400;
+}

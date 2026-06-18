@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  padding: 173px 20px 70px;
+  justify-content: center;
+  flex-basis: 58%;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.registrationSocialNetwork {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: center;
+  padding: 24px;
+}
+
+.registrationSocialNetwork > span {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.socialNetworkIcons {
+  display: flex;
+  gap: 16px;
+}
+
+.noAccountSection {
+  display: flex;
+  justify-content: space-between;
+  background-color: #d1d1d145;
+  padding: 16px 24px;
+  border-radius: 12px;
+}
+
+.noAccountSection > span {
+  color: #222;
+  font-size: 14px;
+}
+
+.registerLink {
+  color: #6212ff;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 90px 20px 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    padding: 40px 10px 20px;
+  }
+
+  .noAccountSection {
+    padding: 20px;
+  }
+}
