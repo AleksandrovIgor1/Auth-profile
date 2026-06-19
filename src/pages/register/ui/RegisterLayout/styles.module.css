@@ -3,6 +3,7 @@
   justify-content: center;
   flex-basis: 58%;
   padding: 140px 20px 70px;
+  overflow: auto;
 }
 
 .content {
@@ -129,6 +130,7 @@ input[type="checkbox"]:checked::after {
   .container {
     flex-basis: 100%;
     padding: 106px 20px 30px;
+    overflow: visible;
   }
 }
 

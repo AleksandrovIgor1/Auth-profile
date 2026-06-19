@@ -1,34 +1,35 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import BaseLayout from "../../layouts/BaseLayout";
 import Profile from "@/pages/profile/ui/Page";
-import { getFromLS } from "@/shared/lib/localStorage";
 import { Login } from "@/pages/login";
 import Register from "@/pages/register/ui/Page";
 import ProtectedRoute from "./ProtectedRoute";
+import ProfileRedirect from "./ProfileRedirect";
+import { ROUTES } from "@/shared/config/routes";
 
 export const appRouter = createBrowserRouter([
     {
-        path: '/',
+        path: ROUTES.BASE,
         element: <BaseLayout />,
         errorElement: <div>Error</div>,
         children: [
             {
                 index: true,
-                element: <Navigate to={getFromLS('access_token') ? '/profile' : '/login'} replace />
+                element: <ProfileRedirect />
             },
             {
-                path: '/login',
+                path: ROUTES.LOGIN,
                 element: <Login />
             },
             {
-                path: '/register',
+                path: ROUTES.REGISTER,
                 element: <Register />
             },
             {
                 element: <ProtectedRoute />,
                 children: [
                     {
-                        path: '/profile',
+                        path: ROUTES.PROFILE,
                         element: <Profile />
                     }
                 ]

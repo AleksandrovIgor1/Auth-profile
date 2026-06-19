@@ -1,11 +1,19 @@
-import { getFromLS } from "@/shared/lib/localStorage"
 import { Navigate, Outlet } from "react-router-dom"
+import { useAppSelector } from "../store/hooks";
+import { ROUTES } from "@/shared/config/routes";
 
 const ProtectedRoute = () => {
-    const token = getFromLS('access_token');
-    if (!token) {
-        return <Navigate to='login' replace />
+    const { accessToken, initialized } =
+        useAppSelector((state) => state.auth);
+
+    if (!initialized) {
+        return <div>Loading...</div>;
     }
+
+    if (!accessToken) {
+        return <Navigate to={ROUTES.LOGIN} replace />;
+    }
+
     return <Outlet />
 }
 

@@ -3,12 +3,14 @@ import { createRoot } from 'react-dom/client'
 import '../index.css'
 import { RouterProvider } from 'react-router-dom'
 import { appRouter } from './router/appRouter'
-import { store } from './appStore'
+import { store } from './store/appStore'
 import { Provider } from 'react-redux'
+import AuthProvider from './AuthProvider'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Provider store={store}>
+      <AuthProvider />
       <RouterProvider router={appRouter} />
     </Provider>
   </StrictMode>,

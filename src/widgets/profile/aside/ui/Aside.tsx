@@ -1,5 +1,3 @@
-import React from 'react'
-
 import styles from './styles.module.css';
 import Collapse from '@/shared/icons/Collapse.svg?react'
 import Yeahub from '@/shared/icons/Yeahub.svg?react'

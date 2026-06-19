@@ -1,19 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './styles.module.css';
 import { Input, PasswordInput } from '@/shared/ui';
 import { useLoginMutation } from '@/entities/auth/api/authApi';
 import type { Auth } from '@/entities/auth';
 import { useForm } from 'react-hook-form';
+import { ROUTES } from '@/shared/config/routes';
 
 
 const Login = () => {
+    const navigate = useNavigate();
 
     const { register, handleSubmit } = useForm<Auth>();
 
     const [loginUser] = useLoginMutation();
 
     const onSubmit = async (data: Auth) => {
-        await loginUser(data)
+        try {
+            await loginUser(data).unwrap();
+            navigate(ROUTES.PROFILE);
+
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     return (

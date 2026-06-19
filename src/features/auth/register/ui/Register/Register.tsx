@@ -3,15 +3,24 @@ import { useRegisterForm } from '../../model/useRegisterForm';
 import { Input, PasswordInput } from '@/shared/ui';
 import { useRegisterMutation } from '@/entities/auth/api/authApi';
 import type { Auth } from '@/entities/auth';
+import { ROUTES } from '@/shared/config/routes';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+    const navigate = useNavigate();
 
     const [registerUser] = useRegisterMutation();
 
     const { register, handleSubmit, errors } = useRegisterForm();
 
     const onSubmit = async (data: Auth) => {
-        await registerUser(data)
+        try {
+            await registerUser(data).unwrap();
+            navigate(ROUTES.LOGIN);
+
+        } catch (error) {
+            console.error(error)
+        }
     };
 
     return (

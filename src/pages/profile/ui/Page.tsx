@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './styles.module.css';
 import { Aside } from '@/widgets/profile/aside';
 import Header from '@/widgets/profile/header/ui/Header/Header';
