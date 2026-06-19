@@ -1,3 +1,4 @@
+import { ROUTES } from '@/shared/config/routes'
 import { useAppSelector } from '../store/hooks'
 import { Navigate } from 'react-router-dom'
 
@@ -9,8 +10,8 @@ const ProfileRedirect = () => {
         <Navigate
             to={
                 accessToken
-                    ? "/profile"
-                    : "/login"
+                    ? ROUTES.PROFILE
+                    : ROUTES.LOGIN
             }
             replace
         />

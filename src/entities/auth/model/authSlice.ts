@@ -16,11 +16,10 @@ export const authSlice = createSlice({
   reducers: {
     setAccessToken(state, action: PayloadAction<string>) {
       state.accessToken = action.payload;
-      state.initialized = true;
     },
     logout(state) {
       state.accessToken = null;
-      state.initialized = false;
+      state.initialized = true;
     },
     setInitialized(state, action: PayloadAction<boolean>) {
       state.initialized = action.payload;
