@@ -1,0 +1,63 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 20px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.h1 {
+  font-size: 36px;
+  color: #191919;
+}
+
+.h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #191919;
+}
+
+.emailConfirmContainer {
+  padding: 24px;
+  background-color: #fff;
+  width: 645px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 4px 10px 0 #6a63761a;
+}
+
+.emailConfirmContent {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.emailText {
+  font-size: 14px;
+  color: #5e5e5e;
+}
+
+.confirmButton {
+  display: flex;
+  gap: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  justify-content: flex-end;
+}
+.confirmButton > span {
+  color: #6a0bff;
+  font-weight: 600;
+}
+
+.confirmArrow {
+  color: #6a0bff;
+}

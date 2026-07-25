@@ -1,6 +1,5 @@
 import baseApi from "@/shared/api/baseApi";
 import type { Auth, AuthResponse } from "../model/types";
-import { logout, setAccessToken, setInitialized } from "../model/authSlice";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -10,58 +9,40 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         body: auth,
       }),
-      async onQueryStarted(_, { queryFulfilled, dispatch }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAccessToken(data.access_token));
-        } catch (error) {
-          console.error(error);
-        }
-      },
     }),
-
     register: build.mutation<AuthResponse, Auth>({
       query: (registration) => ({
         url: "auth/signUp",
         method: "POST",
         body: registration,
       }),
-      async onQueryStarted(_, { queryFulfilled, dispatch }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAccessToken(data.access_token));
-        } catch (error) {
-          console.error(error);
-        }
-      },
     }),
-
-    logout: build.query<void, void>({
-      query: () => "auth/logout",
-      async onQueryStarted(_, { queryFulfilled, dispatch }) {
-        try {
-          await queryFulfilled;
-
-          dispatch(logout());
-          dispatch(baseApi.util.resetApiState());
-        } catch (error) {
-          console.error(error);
-        }
-      },
+    logout: build.mutation<void, void>({
+      query: () => ({
+        url: "auth/logout",
+        method: "GET",
+      }),
     }),
-
     refresh: build.query<AuthResponse, void>({
-      query: () => "auth/refresh",
-      async onQueryStarted(_, { queryFulfilled, dispatch }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAccessToken(data.access_token));
-        } catch {
-          dispatch(logout());
-        } finally {
-          dispatch(setInitialized(true));
-        }
-      },
+      query: () => ({
+        url: "auth/refresh",
+        method: "GET",
+      }),
+    }),
+    sendVerificationEmail: build.mutation<void, string | undefined>({
+      query: (id) => ({
+        url: `/auth/send-verification-email/${id}`,
+        method: "GET",
+      }),
+    }),
+    verifyEmail: build.mutation<void, string | undefined>({
+      query: (token) => ({
+        url: "auth/verify-email",
+        method: "GET",
+        params: {
+          token,
+        },
+      }),
     }),
   }),
 });
@@ -69,6 +50,7 @@ export const authApi = baseApi.injectEndpoints({
 export const {
   useLoginMutation,
   useRegisterMutation,
-  useLazyLogoutQuery,
-  useRefreshQuery,
+  useLogoutMutation,
+  useVerifyEmailMutation,
+  useSendVerificationEmailMutation,
 } = authApi;

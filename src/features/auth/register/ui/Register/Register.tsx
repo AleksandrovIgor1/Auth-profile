@@ -5,18 +5,21 @@ import { useRegisterMutation } from '@/entities/auth/api/authApi';
 import type { Auth } from '@/entities/auth';
 import { ROUTES } from '@/shared/config/routes';
 import { useNavigate } from 'react-router-dom';
+import { setAccessToken } from '@/entities/auth/model/authSlice';
+import { useAppDispatch } from '@/app/providers/store/hooks';
 
 const Register = () => {
     const navigate = useNavigate();
-
+    const dispatch = useAppDispatch();
     const [registerUser] = useRegisterMutation();
 
     const { register, handleSubmit, errors } = useRegisterForm();
 
     const onSubmit = async (data: Auth) => {
         try {
-            await registerUser(data).unwrap();
-            navigate(ROUTES.LOGIN);
+            const response = await registerUser(data).unwrap();
+            dispatch(setAccessToken(response.access_token))
+            navigate(ROUTES.PROFILE);
 
         } catch (error) {
             console.error(error)

@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  gap: 110px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 246px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.avatarContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 660px;
+}
+
+.formInputs {
+  display: flex;
+  width: 348px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.optionsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox span {
+  color: #5b5a5a;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.addButton {
+  display: flex;
+  outline: none;
+  border: none;
+  justify-content: flex-end;
+  cursor: pointer;
+  background-color: transparent;
+  font-weight: 400;
+  font-size: 14px;
+  color: #6a0bff;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.deleteButton {
+  border: none;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8e8e8;
+  display: flex;
+  justify-content: flex-end;
+  outline: none;
+  background: transparent;
+  color: #f3164e;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+}

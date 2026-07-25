@@ -4,6 +4,7 @@ import {
   setAccessToken,
   type AuthState,
 } from "@/entities/auth/model/authSlice";
+import type { FetchArgs, FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import {
   createApi,
   fetchBaseQuery,
@@ -25,22 +26,32 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
+const baseQueryWithReauth: BaseQueryFn<
+  string | FetchArgs,
+  unknown,
+  FetchBaseQueryError
+> = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  const isRefreshRequest = typeof args === "string" && args === "auth/refresh";
+  const url = typeof args === "string" ? args : args.url;
 
-  if (result.error?.status === 401 && !isRefreshRequest) {
-    const refreshResult = await baseQuery("auth/refresh", api, extraOptions);
-    if (refreshResult.data) {
-      api.dispatch(
-        setAccessToken((refreshResult.data as AuthResponse).access_token),
-      );
+  if (
+    result.error?.status === 401 &&
+    !["auth/login", "auth/signUp", "auth/refresh"].includes(url)
+  ) {
+    const refreshResult = await baseQuery(
+      { url: "auth/refresh" },
+      api,
+      extraOptions,
+    );
+
+    const refreshData = refreshResult.data as AuthResponse | undefined;
+    if (refreshData?.access_token) {
+      api.dispatch(setAccessToken(refreshData.access_token));
 
       result = await baseQuery(args, api, extraOptions);
     } else {
       api.dispatch(logout());
-      api.dispatch(baseApi.util.resetApiState());
     }
   }
 

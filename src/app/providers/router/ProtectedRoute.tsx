@@ -3,10 +3,10 @@ import { useAppSelector } from "../store/hooks";
 import { ROUTES } from "@/shared/config/routes";
 
 const ProtectedRoute = () => {
-    const { accessToken, initialized } =
+    const { accessToken, authChecked } =
         useAppSelector((state) => state.auth);
 
-    if (!initialized) {
+    if (!authChecked) {
         return <div>Loading...</div>;
     }
 

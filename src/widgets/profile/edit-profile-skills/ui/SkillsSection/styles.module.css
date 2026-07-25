@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.contentWrapper {
+  display: flex;
+  gap: 120px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 246px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.selectWrapper {
+  max-width: 408px;
+}
+
+.selectedWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.selectedSkills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill {
+  border: 1px solid #6a0bff;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 11px 12px;
+}
+
+.skillConainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .contentWrapper {
+    gap: 20px;
+  }
+  .titleContainer {
+    max-width: 171px;
+  }
+}
+
+@media (max-width: 520px) {
+  .contentWrapper {
+    flex-direction: column;
+  }
+}

@@ -1,5 +1,6 @@
 import styles from './styles.module.css';
 import Yeahub from '@/shared/logos/Yeahub.svg?react'
+import YeahubIcon from '@/shared/icons/YeahubWhite.svg?react'
 import CheckCircle from '@/shared/icons/CheckCircle.svg?react'
 
 
@@ -7,7 +8,10 @@ const AuthAside = () => {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <Yeahub />
+                <div className={styles.logo}>
+                    <YeahubIcon />
+                    <Yeahub />
+                </div>
                 <p className={styles.headerTitle}>YeaHub объединяет IT-специалистов</p>
             </div>
             <div className={styles.benefits}>

@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  gap: 110px;
+}
+
+.titleContainer {
+  flex-shrink: 0;
+  width: 246px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.half {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: calc((100% - 20px) / 2);
+  flex: 1;
+}
+
+.changeSpecialization {
+  margin-top: 8px;
+  font-weight: 600;
+  color: #6a0bff;
+}
+
+.phoneField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.phoneField > label {
+  color: #474747;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.phone {
+  display: flex;
+  align-items: center;
+
+  height: 48px;
+  width: 100%;
+
+  padding: 0 16px;
+
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+}
+
+.flag {
+  flex-shrink: 0;
+  width: 20px;
+  height: 15px;
+}
+
+.flag svg {
+  width: 100%;
+  height: 100%;
+}
+
+.phoneInput {
+  flex: 1;
+  margin-left: 12px;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .half {
+    width: 100%;
+  }
+}

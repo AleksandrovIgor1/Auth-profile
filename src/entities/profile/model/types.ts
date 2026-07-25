@@ -14,6 +14,18 @@ export interface CreatedBy {
   username: string;
 }
 
+export type SocialCode =
+  | "instagram"
+  | "linkedin"
+  | "twitter"
+  | "facebook"
+  | "github"
+  | "behance"
+  | "whatsapp"
+  | "telegram"
+  | "dribbble"
+  | "vk";
+
 export interface Specialization {
   id: number;
   title: string;
@@ -23,6 +35,10 @@ export interface Specialization {
   createdAt: string;
   updatedAt: string;
   createdBy: CreatedBy;
+}
+
+export interface SpecializationsResponse {
+  data: ProfileSkill[];
 }
 
 export interface ProfileSkill {
@@ -36,6 +52,15 @@ export interface ProfileSkill {
   createdBy: CreatedBy;
 }
 
+export interface SkillsResponse {
+  data: ProfileSkill[];
+}
+
+export interface SocialNetwork {
+  code: SocialCode;
+  title: string;
+}
+
 export interface Profile {
   userId: string;
   id: string;
@@ -47,6 +72,7 @@ export interface Profile {
   isActive: boolean;
   ratingPoints: number;
   profileSkills: ProfileSkill[];
+  socialNetwork: SocialNetwork[];
 }
 
 export interface SubscriptionPlan {
@@ -94,3 +120,23 @@ export interface User {
 }
 
 export type ProfileResponse = User;
+
+export interface UpdateProfileDto {
+  userId: string;
+  markingWeight: number;
+  description: string;
+  socialNetwork: SocialNetwork[] | null;
+  image_src: string | null;
+  profileSkills: string[];
+  specializationId: number;
+}
+
+export interface UpdateUserDto {
+  username?: string;
+  country?: string | null;
+  city?: string | null;
+  birthday?: string | null;
+  address?: string | null;
+  avatarUrl?: string | null;
+  avatarImage?: string;
+}

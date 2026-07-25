@@ -1,45 +1,94 @@
 import styles from './styles.module.css';
-import Social from '@/shared/icons/Socail.svg?react';
-import Instagram from '@/shared/icons/Instagram.svg?react';
-import Pinterest from '@/shared/icons/Pinterest.svg?react';
-import Behance from '@/shared/icons/Behance.svg?react';
-import Mail from '@/shared/icons/Mail.svg?react';
-import LinkedIn from '@/shared/icons/LinkedIn.svg?react';
-import type { User } from '../../model/types';
+import VerifiedEmail from '@/shared/icons/VerifiedEmail.svg?react';
+import InProgressEmail from '@/shared/icons/InProgressEmail.svg?react';
+import EditButton from '@/shared/icons/EditButton.svg?react';
+import Avatar from '@/shared/logos/Avatar.svg?react';
+import type { Profile, User } from '../../model/types';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '@/shared/config/routes';
+import { calculateAge } from '../../lib/calculateAge';
+import { socialConfig } from '../../lib/socials';
+import { useGetSpecializationByIdQuery } from '../../api/profileApi';
 
 interface ProfileCardProps {
-    profile: User
+    user: User,
+    profile: Profile
 }
 
-const ProfileCard = ({ profile }: ProfileCardProps) => {
-    const { username } = profile;
+const ProfileCard = ({ user, profile }: ProfileCardProps) => {
+    const { username, email, phone, address, birthday, avatarUrl, isVerified } = user;
+
+    const { data: specialization } = useGetSpecializationByIdQuery(profile.specializationId)
+
+    const age = calculateAge(birthday);
+    const socialNetwork = profile?.socialNetwork ?? [];
+
+    const navigate = useNavigate();
 
     return (
         <div className={styles.container}>
             <div className={styles.aside}>
-                <img src="" alt="" />
-                <p className={styles.format}>Удаленно, Part-time, Freelance</p>
+                <div className={styles.avatarContainer}>
+                    {avatarUrl ? <img
+                        src={avatarUrl}
+                        alt={`${username} avatar`}
+                        loading="lazy"
+                        className={styles.avatar}
+                    /> : <Avatar className={styles.placeholder} />}
+                </div>
+                <p className={styles.format}>Удаленно, Part-time, <br />Freelance</p>
             </div>
             <div className={styles.infoWrapper}>
                 <div className={styles.infoSection}>
-                    <div className={styles.headerInfo}>
-                        <h2 className={styles.name}>{username}</h2>
-                        <span className={styles.candidate}>Кандидат</span>
+                    <div className={styles.headerContainer}>
+                        <div className={styles.header}>
+                            <h1 className={styles.name}>{username}</h1>
+                            <p className={styles.candidate}>Кандидат</p>
+                        </div>
+                        <EditButton className={styles.editButton} onClick={() => navigate(ROUTES.EDIT_PROFILE)} />
                     </div>
                     <div className={styles.info}>
-                        <p>age</p>
-                        <p>UX/UI Дизайнер в Яндекс</p>
+                        <p>{age !== undefined ? `${age} лет` : null}</p>
+                        <p>{specialization?.title}</p>
                         <p className={styles.experience}>Опыт: 7 лет</p>
-                        <p className={styles.location}>Москва, Россия</p>
+                        <p className={styles.location}>{address}</p>
                     </div>
                 </div>
-                <div className={styles.socialMedias}>
-                    <Social />
-                    <Instagram />
-                    <Pinterest />
-                    <Behance />
-                    <Mail />
-                    <LinkedIn />
+                <div className={styles.contactsContainer}>
+                    <div className={styles.contacts}>
+                        {phone}
+                        <div className={styles.email}>
+                            {isVerified ? (
+                                <>
+                                    <VerifiedEmail />
+                                    <span>{email}</span>
+                                </>
+                            ) : (
+                                <>
+                                    <InProgressEmail />
+                                    <span>Подтвердить email</span>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                    <div className={styles.socialMedias}>
+                        {socialNetwork
+                            .filter(({ title }) => title.trim() !== "")
+                            .map(({ code, title }) => {
+                                const { Icon, getUrl } = socialConfig[code];
+
+                                return (
+                                    <a
+                                        key={code}
+                                        href={getUrl(title)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <Icon />
+                                    </a>
+                                );
+                            })}
+                    </div>
                 </div>
             </div>
         </div>

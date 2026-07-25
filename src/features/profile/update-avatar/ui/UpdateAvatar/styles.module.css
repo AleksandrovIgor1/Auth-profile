@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  gap: 110px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 246px;
+  flex-shrink: 0;
+}
+
+.deleteAvatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.deleteText {
+  color: #f3164e;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  gap: 110px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 246px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.half {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: calc((100% - 20px) / 2);
+  flex: 1;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 520px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .half {
+    width: 100%;
+  }
+}

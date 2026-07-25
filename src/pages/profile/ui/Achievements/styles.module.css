@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 24px;
+  box-shadow: 0 4px 10px #6a63761a;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons {
+  display: flex;
+  gap: 8px;
+}
+
+.next {
+  transform: rotate(180deg);
+}
+
+.achievements {
+  display: flex;
+  gap: 4px;
+}
+
+.achievement {
+  width: 58px;
+  height: 58px;
+  background-color: #9c3434;
+  border-radius: 12px;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .achievement {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 20px 16px;
+  }
+
+  .achievement {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+@media (max-width: 440px) {
+  .container {
+    padding: 20px 10px;
+  }
+}

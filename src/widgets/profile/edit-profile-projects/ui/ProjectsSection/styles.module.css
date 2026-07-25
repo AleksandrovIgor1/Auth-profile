@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 31px;
+  border: 1px solid #6a0bff;
+  border-radius: 12px;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.addButton > span {
+  color: #6a0bff;
+  font-weight: 600;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+}

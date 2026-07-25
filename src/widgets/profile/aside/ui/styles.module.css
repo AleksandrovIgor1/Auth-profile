@@ -4,6 +4,12 @@
   width: 280px;
   background-color: #fff;
   height: 100vh;
+  transition: width 0.3s ease-in-out;
+  flex-shrink: 0;
+}
+
+.collapsed {
+  width: 88px;
 }
 
 .header {
@@ -13,10 +19,22 @@
   border-bottom: 1px solid #f4f4f4;
 }
 
+.headerCollapsed {
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 26px;
+  align-items: center;
+}
+
 .logos {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.collapsedIcon {
+  transition: transform 0.3s ease-in-out;
+  transform: rotate(180deg);
 }
 
 .wrapper {
@@ -64,12 +82,20 @@
   background: #d1d1d1;
 }
 
+.itemActiveCollapsed::after {
+  background-color: transparent;
+}
+
 .footer {
   display: flex;
   flex-direction: column;
   margin-top: auto;
   gap: 8px;
   padding: 20px;
+}
+
+.footerCollapsed {
+  display: none;
 }
 
 .supportButton {
@@ -84,4 +110,27 @@
   outline: none;
   cursor: pointer;
   color: #fff;
+}
+
+@media (max-width: 1024px) {
+  .container {
+    position: absolute;
+    left: 0;
+    top: 73px;
+
+    height: 100vh;
+
+    transform: translateX(-100%);
+    transition: 0.3s;
+
+    z-index: 1000;
+  }
+
+  .header {
+    display: none;
+  }
+
+  .open {
+    transform: translateX(0);
+  }
 }

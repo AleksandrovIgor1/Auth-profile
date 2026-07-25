@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  gap: 110px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 246px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.avatarContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.half {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: calc((100% - 20px) / 2);
+  flex: 1;
+}
+
+.smallContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.note {
+  font-weight: 400;
+  font-size: 12px;
+  color: #757575;
+  line-height: 1.2;
+}
+
+.deleteButton {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f3164e;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-self: flex-end;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  outline: none;
+  border: none;
+  justify-content: flex-end;
+  cursor: pointer;
+  background-color: transparent;
+  padding-top: 20px;
+  border-top: 1px solid #e8e8e8;
+  color: #6a0bff;
+  font-weight: 400;
+  font-size: 14px;
+}

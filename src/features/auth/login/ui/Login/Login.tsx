@@ -5,18 +5,22 @@ import { useLoginMutation } from '@/entities/auth/api/authApi';
 import type { Auth } from '@/entities/auth';
 import { useForm } from 'react-hook-form';
 import { ROUTES } from '@/shared/config/routes';
+import { useAppDispatch } from '@/app/providers/store/hooks';
+import { setAccessToken } from '@/entities/auth/model/authSlice';
 
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const { register, handleSubmit } = useForm<Auth>();
 
-    const [loginUser] = useLoginMutation();
+    const [loginUser, { isLoading, error }] = useLoginMutation();
 
     const onSubmit = async (data: Auth) => {
         try {
-            await loginUser(data).unwrap();
+            const response = await loginUser(data).unwrap();
+            dispatch(setAccessToken(response.access_token))
             navigate(ROUTES.PROFILE);
 
         } catch (error) {
@@ -33,8 +37,11 @@ const Login = () => {
                     <PasswordInput {...register('password')} label='Пароль' placeholder='Введите пароль' />
                 </div>
                 <Link to='' className={styles.forgotPassword}>Забыли пароль?</Link>
-                <button type="submit" className={styles.inputButton}>Вход</button>
+                <button type="submit" className={styles.inputButton}>{isLoading ? "Вход..." : "Вход"}</button>
             </form>
+            {error && (
+                <div className={styles.error}>Неверный логин или пароль</div>
+            )}
         </div>
     )
 }

@@ -1,18 +1,18 @@
-import { useLazyLogoutQuery } from '@/entities/auth/api/authApi';
 import styles from './styles.module.css';
 import LogoutIcon from '@/shared/icons/Logout.svg?react';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '@/shared/config/routes';
+import { useAppDispatch } from '@/app/providers/store/hooks';
+import { logout as logoutAction } from "@/entities/auth/model/authSlice";
+import { useLogoutMutation } from '@/entities/auth/api/authApi';
 
 const Logout = () => {
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
-    const [logout] = useLazyLogoutQuery();
+    const [logout] = useLogoutMutation();
 
     const handleLogout = async () => {
         try {
             await logout().unwrap();
-            navigate(ROUTES.LOGIN);
+            dispatch(logoutAction());
 
         } catch (error) {
             console.error(error)
