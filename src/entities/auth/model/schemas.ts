@@ -17,14 +17,14 @@ export const UserSchema = z.object({
   username: z.string(),
   email: z.string(),
 
-  phone: z.string(),
+  phone: z.string().nullable(),
   country: z.string(),
   city: z.string(),
 
-  birthday: z.string(),
+  birthday: z.string().nullable(),
   address: z.string(),
 
-  avatarUrl: z.string(),
+  avatarUrl: z.string().nullable(),
 
   updatedAt: z.string(),
   createdAt: z.string(),

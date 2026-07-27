@@ -11,42 +11,58 @@ export const UserRoleSchema = z.object({
   permissions: z.array(PermissionSchema),
 });
 
-export const CreatedBySchema = z.object({
-  id: z.string(),
-  username: z.string(),
-});
+export const CreatedBySchema = z
+  .object({
+    id: z.string(),
+    username: z.string(),
+  })
+  .nullable();
 
 export const SpecializationSchema = z.object({
   id: z.number(),
+
   title: z.string(),
+
   slug: z.string(),
-  description: z.string(),
-  imageSrc: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  createdBy: CreatedBySchema,
+
+  description: z.string().nullable().optional(),
+
+  imageSrc: z.string().nullable().optional(),
+
+  createdAt: z.string().optional(),
+
+  updatedAt: z.string().optional(),
+
+  createdBy: CreatedBySchema.optional(),
 });
 
 export const ProfileSkillSchema = z.object({
   id: z.number(),
+
   title: z.string(),
-  description: z.string(),
-  imageSrc: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
 
-  specializations: z.array(SpecializationSchema),
+  description: z.string().nullable().optional(),
 
-  createdBy: CreatedBySchema,
+  imageSrc: z.string().nullable().optional(),
+
+  createdAt: z.string().optional(),
+
+  updatedAt: z.string().optional(),
+
+  specializations: z.array(SpecializationSchema).optional(),
+
+  createdBy: CreatedBySchema.optional(),
 });
 
 export const SocialNetworkSchema = z.object({
   code: z.string(),
+
   title: z.string(),
 });
 
 export const ProfileSchema = z.object({
-  userId: z.string(),
+  userId: z.string().optional(),
+
   id: z.string(),
 
   profileType: z.number(),
@@ -55,9 +71,9 @@ export const ProfileSchema = z.object({
 
   markingWeight: z.number(),
 
-  description: z.string(),
+  description: z.string().nullable(),
 
-  image_src: z.string(),
+  image_src: z.string().nullable(),
 
   isActive: z.boolean(),
 
@@ -65,13 +81,16 @@ export const ProfileSchema = z.object({
 
   profileSkills: z.array(ProfileSkillSchema),
 
-  socialNetwork: z.array(SocialNetworkSchema),
+  socialNetwork: z.array(SocialNetworkSchema).nullable(),
 });
 
 export const SubscriptionPlanSchema = z.object({
   id: z.number(),
+
   name: z.string(),
+
   code: z.string(),
+
   isActive: z.boolean(),
 
   pricePerMonth: z.number(),
@@ -112,17 +131,17 @@ export const UserSchema = z.object({
 
   email: z.string(),
 
-  phone: z.string(),
+  phone: z.string().nullable(),
 
-  country: z.string(),
+  country: z.string().nullable(),
 
-  city: z.string(),
+  city: z.string().nullable(),
 
-  birthday: z.string(),
+  birthday: z.string().nullable(),
 
-  address: z.string(),
+  address: z.string().nullable(),
 
-  avatarUrl: z.string(),
+  avatarUrl: z.string().nullable(),
 
   updatedAt: z.string(),
 
@@ -134,7 +153,7 @@ export const UserSchema = z.object({
 
   isEmailNotificationsEnable: z.boolean(),
 
-  telegramUsername: z.string(),
+  telegramUsername: z.string().nullable(),
 
   subscriptions: z.array(UserSubscriptionSchema),
 

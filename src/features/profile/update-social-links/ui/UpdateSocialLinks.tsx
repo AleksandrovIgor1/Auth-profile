@@ -21,7 +21,7 @@ const UpdateSocialLinks = () => {
             <div className={styles.form}>
                 <div className={styles.inputContainer}>
                     {SOCIAL_ROWS.map((row) => (
-                        <div key={row.join('-')} className={styles.row}>
+                        <div key={row.map((social) => social.code).join('-')} className={styles.row}>
                             {row.map((social) => (
                                 <TextField
                                     key={social.code}
