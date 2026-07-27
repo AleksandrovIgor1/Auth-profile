@@ -4,9 +4,9 @@ import styles from './styles.module.css';
 import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { useVerifyEmailMutation } from '@/entities/auth/api/authApi';
 import { useEffect } from 'react';
-import { useAppDispatch } from '@/app/providers/store/hooks';
 import Aside from './Aside/Aside';
 import { VerifyEmailCard } from '@/features/auth/verify-email';
+import { useAppDispatch } from '@/shared/lib/store/hooks';
 
 const VerifyEmail = () => {
     const navigate = useNavigate();
@@ -17,54 +17,50 @@ const VerifyEmail = () => {
 
     const {
         data: profile,
-        isLoading,
+        isLoading: isProfileLoading,
     } = useGetProfileQuery();
 
 
 
-    const [verifyEmail, { isLoading: isVerifying }] = useVerifyEmailMutation();
+    const [verifyEmail, { isLoading: isVerifying, isSuccess, isError }] = useVerifyEmailMutation();
 
     useEffect(() => {
         if (!token) return;
 
-        const confirm = async () => {
-            try {
-                await verifyEmail(token).unwrap();
+        verifyEmail(token).unwrap().catch(console.error);
+    }, [token, verifyEmail]);
 
-                dispatch(profileApi.util.invalidateTags(["Profile"]));
+    useEffect(() => {
+        if (!isSuccess) return;
 
-                navigate(ROUTES.PROFILE, {
-                    replace: true,
-                });
-            } catch (e) {
-                console.error(e);
-            }
-        };
+        dispatch(profileApi.util.invalidateTags(["Profile"]));
 
-        confirm();
-    }, [token, verifyEmail, dispatch, navigate]);
+        const timer = setTimeout(() => {
+            navigate(ROUTES.PROFILE, { replace: true });
+        }, 1500);
 
-    if (isLoading) {
+        return () => clearTimeout(timer);
+    }, [isSuccess, dispatch, navigate]);
+
+    if (isProfileLoading) {
         return <div>Loading</div>;
+    }
+
+    if (isVerifying) {
+        return <div>Подтверждаем...</div>;
+    }
+
+    if (isSuccess) {
+        return <div>Email подтвержден</div>;
+    }
+
+    if (isError) {
+        return <div>Не удалось подтвердить email</div>;
     }
 
     if (profile?.isVerified) {
         return <Navigate to={ROUTES.PROFILE} replace />;
     }
-
-    if (token) {
-        return (
-            <div className={styles.page}>
-                <h2>
-                    {isVerifying
-                        ? "Подтверждаем email..."
-                        : "Email подтвержден"}
-                </h2>
-            </div>
-        );
-    }
-
-
 
     return (
         <div className={styles.page}>

@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom"
-import { useAppSelector } from "../store/hooks";
 import { ROUTES } from "@/shared/config/routes";
+import { useAppSelector } from "@/shared/lib/store/hooks";
 
 const ProtectedRoute = () => {
     const { accessToken, authChecked } =

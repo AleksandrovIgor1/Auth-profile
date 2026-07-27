@@ -1,5 +1,6 @@
 import baseApi from "@/shared/api/baseApi";
-import type { Auth, AuthResponse } from "../model/types";
+import type { Auth } from "../model/types";
+import { AuthResponseSchema, type AuthResponse } from "../model/schemas";
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
@@ -9,6 +10,7 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         body: auth,
       }),
+      transformResponse: (response) => AuthResponseSchema.parse(response),
     }),
     register: build.mutation<AuthResponse, Auth>({
       query: (registration) => ({
@@ -16,6 +18,7 @@ export const authApi = baseApi.injectEndpoints({
         method: "POST",
         body: registration,
       }),
+      transformResponse: (response) => AuthResponseSchema.parse(response),
     }),
     logout: build.mutation<void, void>({
       query: () => ({
@@ -28,6 +31,7 @@ export const authApi = baseApi.injectEndpoints({
         url: "auth/refresh",
         method: "GET",
       }),
+      transformResponse: (response) => AuthResponseSchema.parse(response),
     }),
     sendVerificationEmail: build.mutation<void, string | undefined>({
       query: (id) => ({

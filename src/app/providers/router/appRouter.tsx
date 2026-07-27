@@ -1,19 +1,17 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Profile from "@/pages/profile/ui/Page";
 import { Login } from "@/pages/login";
-import Register from "@/pages/register/ui/Page";
 import ProtectedRoute from "./ProtectedRoute";
 import { ROUTES } from "@/shared/config/routes";
-import EditProfile from "@/pages/profileEdit/ui/Page";
-import AuthLayout from "@/app/layouts/authLayout/ui/AuthLayout";
-import ProfileLayout from "@/app/layouts/profileLayout/ui/ProfileLayout";
 import RootRedirect from "./RootRedirect";
-import RootLayout from "@/app/layouts/rootLayout/ui/RootLayout";
-import { InfoSection } from "@/widgets/profile/edit-profile-info/ui";
-import { AboutSection } from "@/widgets/profile/edit-profile-about/ui";
-import { SkillsSection } from "@/widgets/profile/edit-profile-skills/ui";
 import VerifiedRoute from "./VerifiedRoute";
 import { VerifyEmail } from "@/pages/verify-email";
+import { EditProfile } from "@/pages/profileEdit";
+import { AuthLayout, ProfileLayout, RootLayout } from "@/app/layouts";
+import { Register } from "@/pages/register";
+import { Profile } from "@/pages/profile";
+import ProfileEditInfo from "@/pages/profileEditInfo/ui/Page";
+import ProfileEditAbout from "@/pages/ProfileEditAbout/ui/Page";
+import ProfileEditSkills from "@/pages/ProfileEditSkills/ui/Page";
 
 export const appRouter = createBrowserRouter([
     {
@@ -65,15 +63,15 @@ export const appRouter = createBrowserRouter([
                                             },
                                             {
                                                 path: "info",
-                                                element: <InfoSection />,
+                                                element: <ProfileEditInfo />,
                                             },
                                             {
                                                 path: "about",
-                                                element: <AboutSection />,
+                                                element: <ProfileEditAbout />,
                                             },
                                             {
                                                 path: "skills",
-                                                element: <SkillsSection />,
+                                                element: <ProfileEditSkills />,
                                             },
                                             // {
                                             //     path: "projects",

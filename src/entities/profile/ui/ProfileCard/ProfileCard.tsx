@@ -75,7 +75,13 @@ const ProfileCard = ({ user, profile }: ProfileCardProps) => {
                         {socialNetwork
                             .filter(({ title }) => title.trim() !== "")
                             .map(({ code, title }) => {
-                                const { Icon, getUrl } = socialConfig[code];
+                                const config = socialConfig[code];
+
+                                if (!config) {
+                                    return null;
+                                }
+
+                                const { Icon, getUrl } = config;
 
                                 return (
                                     <a

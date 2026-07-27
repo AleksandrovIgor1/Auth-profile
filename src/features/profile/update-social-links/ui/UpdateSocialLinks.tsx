@@ -2,10 +2,11 @@ import { TextField } from '@/shared/ui/TextField/TextField';
 import styles from './styles.module.css';
 import { useFormContext } from 'react-hook-form';
 import { SOCIAL_ROWS } from '../model/socialPlatforms';
+import type { InfoFormValues } from '@/entities/profile/model/types';
 
 
 const UpdateSocialLinks = () => {
-    const { register } = useFormContext();
+    const { register } = useFormContext<InfoFormValues>();
 
     return (
         <div className={styles.container}>

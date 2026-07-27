@@ -1,31 +1,48 @@
 import baseApi from "@/shared/api/baseApi";
-import type {
-  Profile,
-  ProfileResponse,
-  SkillsResponse,
-  Specialization,
-  SpecializationsResponse,
-  UpdateProfileDto,
-  UpdateUserDto,
-  User,
-} from "../model/types";
+
+import type { UpdateProfileDto, UpdateUserDto } from "../model/types";
+import {
+  ProfileSchema,
+  SkillsResponseSchema,
+  SpecializationSchema,
+  SpecializationsResponseSchema,
+  UserSchema,
+  type Profile,
+  type SkillsResponse,
+  type Specialization,
+  type SpecializationsResponse,
+  type User,
+} from "../model/schemas";
 
 export const profileApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    getProfile: build.query<ProfileResponse, void>({
+    getProfile: build.query<User, void>({
       query: () => "auth/profile",
+
+      transformResponse: (response) => UserSchema.parse(response),
+
       providesTags: ["Profile"],
     }),
     getSkills: build.query<SkillsResponse, void>({
       query: () => "skills",
+
+      transformResponse: (response) => SkillsResponseSchema.parse(response),
+
       providesTags: ["Profile"],
     }),
     getSpecializations: build.query<SpecializationsResponse, void>({
       query: () => "specializations",
+
+      transformResponse: (response) =>
+        SpecializationsResponseSchema.parse(response),
+
       providesTags: ["Profile"],
     }),
     getSpecializationById: build.query<Specialization, number>({
       query: (id) => `specializations/${id}`,
+
+      transformResponse: (response) => SpecializationSchema.parse(response),
+
       providesTags: ["Profile"],
     }),
     updateProfile: build.mutation<
@@ -37,6 +54,9 @@ export const profileApi = baseApi.injectEndpoints({
         method: "PUT",
         body: data,
       }),
+
+      transformResponse: (response) => ProfileSchema.parse(response),
+
       invalidatesTags: ["Profile"],
     }),
     updateUser: build.mutation<User, { id: string; data: UpdateUserDto }>({
@@ -45,6 +65,9 @@ export const profileApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
+
+      transformResponse: (response) => UserSchema.parse(response),
+
       invalidatesTags: ["Profile"],
     }),
   }),

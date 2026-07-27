@@ -13,21 +13,7 @@ const RegisterLayout = () => {
             <div className={styles.content}>
                 <div className={styles.formContainer}>
                     <Register />
-                    <div className={styles.confirmContainer}>
-                        <p className={styles.confirmTitle}>Проставив галочку («✔») и нажимая «Зарегистрироваться»:</p>
-                        <ul className={styles.confirmList}>
-                            <li className={styles.confirm}>
-                                <input type="checkbox" />
-                                <span>Даю согласие на <a className={styles.confirmLink}>обработку ПД,</a> в соответствии с <a className={styles.confirmLink}>Политикой в отношении ПД</a></span>
-                            </li>
-                            <li className={styles.confirm}>
-                                <input type="checkbox" /> <span>Я подтверждаю что ознакомился(-ась) с Договором-офертой</span>
-                            </li>
-                            <li className={styles.confirm}>
-                                <input type="checkbox" /> <span>Даю согласие на получение рекламных и информационных рассылок</span>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div className={styles.registrationSocialNetwork}>
                         <p className={styles.registrationTitle}>Зарегистрироваться через социальные сети</p>
                         <div className={styles.socialNetworkIcons}>

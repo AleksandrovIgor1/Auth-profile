@@ -4,10 +4,11 @@ import Flag from '@/shared/icons/Flag.svg?react';
 import { Select } from '@/shared/ui';
 import { TextField } from '@/shared/ui/TextField/TextField';
 import { Controller, useFormContext } from 'react-hook-form';
+import type { InfoFormValues } from '@/entities/profile/model/types';
 
 
 const UpdatePersonalInfo = () => {
-    const { register, control } = useFormContext();
+    const { register, control } = useFormContext<InfoFormValues>();
     const { data: specializations } = useGetSpecializationsQuery();
     const allSpecializations = specializations?.data ?? [];
     const specializationOptions =

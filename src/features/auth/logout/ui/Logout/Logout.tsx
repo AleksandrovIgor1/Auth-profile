@@ -1,8 +1,8 @@
 import styles from './styles.module.css';
 import LogoutIcon from '@/shared/icons/Logout.svg?react';
-import { useAppDispatch } from '@/app/providers/store/hooks';
 import { logout as logoutAction } from "@/entities/auth/model/authSlice";
 import { useLogoutMutation } from '@/entities/auth/api/authApi';
+import { useAppDispatch } from '@/shared/lib/store/hooks';
 
 const Logout = () => {
     const dispatch = useAppDispatch();

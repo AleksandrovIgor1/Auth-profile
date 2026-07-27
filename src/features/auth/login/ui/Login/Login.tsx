@@ -5,8 +5,8 @@ import { useLoginMutation } from '@/entities/auth/api/authApi';
 import type { Auth } from '@/entities/auth';
 import { useForm } from 'react-hook-form';
 import { ROUTES } from '@/shared/config/routes';
-import { useAppDispatch } from '@/app/providers/store/hooks';
 import { setAccessToken } from '@/entities/auth/model/authSlice';
+import { useAppDispatch } from '@/shared/lib/store/hooks';
 
 
 const Login = () => {

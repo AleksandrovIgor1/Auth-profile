@@ -4,6 +4,7 @@ import {
   setAccessToken,
   type AuthState,
 } from "@/entities/auth/model/authSlice";
+import { AuthResponseSchema } from "@/entities/auth/model/schemas";
 import type { FetchArgs, FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import {
   createApi,
@@ -26,6 +27,8 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
+let refreshPromise: Promise<AuthResponse | undefined> | null = null;
+
 const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
   unknown,
@@ -39,13 +42,30 @@ const baseQueryWithReauth: BaseQueryFn<
     result.error?.status === 401 &&
     !["auth/login", "auth/signUp", "auth/refresh"].includes(url)
   ) {
-    const refreshResult = await baseQuery(
-      { url: "auth/refresh" },
-      api,
-      extraOptions,
-    );
+    if (!refreshPromise) {
+      refreshPromise = (async () => {
+        const refreshResult = await baseQuery(
+          { url: "auth/refresh" },
+          api,
+          extraOptions,
+        );
 
-    const refreshData = refreshResult.data as AuthResponse | undefined;
+        const parsed = AuthResponseSchema.safeParse(refreshResult.data);
+
+        if (!parsed.success) {
+          console.error("Invalid refresh response", parsed.error);
+
+          return undefined;
+        }
+
+        return parsed.data;
+      })().finally(() => {
+        refreshPromise = null;
+      });
+    }
+
+    const refreshData = await refreshPromise;
+
     if (refreshData?.access_token) {
       api.dispatch(setAccessToken(refreshData.access_token));
 

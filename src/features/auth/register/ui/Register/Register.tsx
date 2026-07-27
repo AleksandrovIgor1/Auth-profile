@@ -6,7 +6,7 @@ import type { Auth } from '@/entities/auth';
 import { ROUTES } from '@/shared/config/routes';
 import { useNavigate } from 'react-router-dom';
 import { setAccessToken } from '@/entities/auth/model/authSlice';
-import { useAppDispatch } from '@/app/providers/store/hooks';
+import { useAppDispatch } from '@/shared/lib/store/hooks';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -34,6 +34,23 @@ const Register = () => {
                 <Input label='Почта' placeholder='Введите электронную почту' error={errors.email?.message} {...register('email')} type='email' />
                 <PasswordInput label='Пароль' placeholder='Введите пароль' {...register('password')} error={errors.password?.message} />
                 <PasswordInput label='Подтвердить пароль' placeholder='Введите пароль' {...register('confirmPassword')} error={errors.confirmPassword?.message} />
+
+                <div className={styles.confirmContainer}>
+                    <p className={styles.confirmTitle}>Проставив галочку («✔») и нажимая «Зарегистрироваться»:</p>
+                    <ul className={styles.confirmList}>
+                        <li className={styles.confirm}>
+                            <input type="checkbox" />
+                            <span>Даю согласие на <a className={styles.confirmLink}>обработку ПД,</a> в соответствии с <a className={styles.confirmLink}>Политикой в отношении ПД</a></span>
+                        </li>
+                        <li className={styles.confirm}>
+                            <input type="checkbox" /> <span>Я подтверждаю что ознакомился(-ась) с Договором-офертой</span>
+                        </li>
+                        <li className={styles.confirm}>
+                            <input type="checkbox" /> <span>Даю согласие на получение рекламных и информационных рассылок</span>
+                        </li>
+                    </ul>
+                </div>
+
                 <button type="submit" className={styles.inputButton}>Зарегистрироваться</button>
             </form>
         </div>

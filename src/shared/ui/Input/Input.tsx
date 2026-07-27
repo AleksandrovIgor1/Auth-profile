@@ -14,7 +14,7 @@ const Input = ({ label, error, className, ...props }: InputProps) => {
           {label}
         </label>
       )}
-      <input {...props} type="text" id='name'
+      <input {...props}
         className={`${styles.input} ${error ? styles.inputError : ''
           } ${className ?? ''}`} />
       {error && (

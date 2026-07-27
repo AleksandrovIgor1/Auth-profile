@@ -15,5 +15,5 @@ export const SOCIAL_ROWS = [
     { code: "telegram", title: "Telegram" },
     { code: "vk", title: "VK" },
   ],
-  [{ code: "dribble", title: "Dribbble" }],
+  [{ code: "dribbble", title: "Dribbble" }],
 ] as const;

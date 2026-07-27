@@ -1,5 +1,7 @@
-import type { SocialCode, SocialNetwork } from "@/entities/profile/model/types";
-import type { InfoFormValues } from "./types";
+import type {
+  InfoFormValues,
+  SocialNetwork,
+} from "@/entities/profile/model/types";
 
 export const socialNetworkToForm = (
   socials: SocialNetwork[],
@@ -18,7 +20,9 @@ export const socialNetworkToForm = (
   };
 
   socials.forEach(({ code, title }) => {
-    result[code] = title;
+    if (code in result) {
+      result[code as keyof typeof result] = title;
+    }
   });
 
   return result;
@@ -27,10 +31,10 @@ export const socialNetworkToForm = (
 export const formToSocialNetwork = (
   socials: InfoFormValues["socials"],
 ): SocialNetwork[] => {
-  return Object.entries(socials)
-    .filter(([, title]) => title.trim() !== "")
-    .map(([code, title]) => ({
-      code: code as SocialCode,
-      title,
+  return (Object.keys(socials) as Array<keyof InfoFormValues["socials"]>)
+    .filter((code) => socials[code].trim() !== "")
+    .map((code) => ({
+      code,
+      title: socials[code],
     }));
 };

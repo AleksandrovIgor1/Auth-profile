@@ -4,13 +4,13 @@ import UpdateAvatar from "@/features/profile/update-avatar/ui/UpdateAvatar/Updat
 import { useEffect } from "react";
 import { useGetProfileQuery, useUpdateUserMutation } from "@/entities/profile/api/profileApi";
 import { FormProvider, useForm } from "react-hook-form";
-import type { InfoFormValues } from "../../model/types";
 import UpdatePersonalInfo from "@/features/profile/update-personal-info/ui/UpdatePersonalInfo";
 import UpdateSocialLinks from "@/features/profile/update-social-links/ui/UpdateSocialLinks";
 import { formToSocialNetwork, socialNetworkToForm } from "../../model/socialMapper";
 import { useOutletContext } from "react-router-dom";
 import type { StepNavigationContext } from "@/shared/lib/step-navigation/types";
 import { useSaveProfile } from "@/entities/profile/lib/useSaveProfile";
+import type { InfoFormValues } from "@/entities/profile/model/types";
 
 
 const InfoSection = () => {
